@@ -1,0 +1,168 @@
+body{
+	margin:0px;
+	height: 100%;
+}
+.background-principal{
+	position: absolute;
+	top:0;
+	overflow:hidden;
+	width: 100%;
+	max-height: 100%;
+	z-index: -9999
+}
+.imagem_principal{
+	overflow: hidden;
+}
+.conteudo-site{
+	position: absolute;
+	top:0;
+	overflow: hidden;
+}
+
+.cabecalho{	
+	position: relative;
+	top:0px;
+	margin-top:0px;	
+	width:100%;
+	height:40px;
+	background-color: #000;
+	color: #FFFFFF;
+}
+.cabecalho p{
+	font-family: "distant_galaxyregular";
+    font-size: 20px;    
+    text-align: left;
+    top: 5px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.corpo_pagina{
+	position: relative;
+	-webkit-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.75);
+	margin: 40px auto;
+	overflow:hidden;
+	width: 75%;
+	background-image: url("Imagens/background-fume.png");
+	
+}
+
+.menu,.conteudo, .logo, .miniatura_foto{
+	position: relative;
+	float:left;
+}
+.menu{
+	width: 25%;
+	padding-top: 10px;
+	font-family: 'hattori_hanzolight';
+}
+.menu a{
+	color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+	width: 90%;
+	text-align: center;
+	text-decoration: none;
+	margin: 15px ;
+}
+
+.menu a:hover{
+	color: #000;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.active{
+	border:1px solid #fff;
+	border-radius: 5px;
+}
+
+.conteudo{
+	width: 75%;	
+	font-family: 'hattori_hanzolight';	
+	color: #FFF;	
+	overflow-y: auto;
+	
+}
+.conteudo h1{
+	font-size: 20px;
+	padding: 10px;
+}
+.conteudo p{
+	padding: 10px;
+	font-size: 14px;
+}
+.fotos{
+	overflow: hidden;
+	padding: 5px 0;
+}
+
+.rodape{
+	position: relative;
+	text-align:left;
+	width:100%;
+	height:30px;
+	background-color: #000;
+	color: white;
+}
+.rodape p{
+	font-family: 'edoregular';
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+
+.miniatura_foto{	
+	width: 100px;
+	overflow:hidden;
+	height: 50px;	
+	margin: 10px;
+
+}
+.miniatura_foto img{
+	width:100%;
+	height:auto;
+
+}
+.copyright_simbolo{
+	font-family: serif;
+}
+
+
+.formulario{	
+	width:90%;
+}
+.formulario input, textarea{	
+	border:1px solid #000;	
+	color: #000;
+	margin: 5px;
+	width:100%;
+	height:25px;
+	padding: 3px;
+}
+.formulario textarea{
+	height: 150px;
+}
+.formulario > .btn_enviar{
+	width: 50px;
+}
+
+.msg_erro{
+	background-color: pink;
+	border:1px solid red;
+	border-radius: 5px;
+	color: red;
+	width: 90%;
+}
+.msg_sucesso{
+	background-color: cyan;
+	border:1px solid green;
+	border-radius: 5px;
+	color: green;
+	width: 90%;
+}
+
