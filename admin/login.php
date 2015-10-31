@@ -1,9 +1,9 @@
 <?php  
     session_start();
     session_regenerate_id();
+    include_once("../configuracao.php");
     unset($mensagem);
     if($_POST){        
-        include_once("../configuracao.php");
         if(Usuario::Login($_POST["email"], $_POST["senha"])){
             header("Location: lista_pagina.php");
             exit;
@@ -18,7 +18,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
-  include_once("../configuracao.php");
   include_once("tag_head.php");
   ?>
   <body>

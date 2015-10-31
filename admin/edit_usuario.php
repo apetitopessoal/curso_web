@@ -8,7 +8,7 @@ if(!Usuario::ValidarLogin()){
 }else{  
     $mensagem_erro = array();
     if($_GET["id"]){
-        $usuarioObj = new Usuario($_GET["id"]);            
+        $usuarioObj = new Usuario($_GET["id"]);           
     }
     if($_POST){
         if(!empty($_POST["nome"])){            
