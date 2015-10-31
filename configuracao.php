@@ -18,9 +18,14 @@
     define("PATH_IMAGEM_USUARIO",PATH_COMPLETO_SITE.PASTA_IMAGEM_USUARIO);
     define("URL_IMAGEM_USUARIO",SITE_URL.PASTA_IMAGEM_USUARIO);
     
+    define("PASTA_IMAGEM_PRODUTO","uploads/produto/");
+    define("PATH_IMAGEM_PRODUTO",PATH_COMPLETO_SITE.PASTA_IMAGEM_PRODUTO);
+    define("URL_IMAGEM_PRODUTO",SITE_URL.PASTA_IMAGEM_PRODUTO);
+    
     
     // Includes
     include_once(PATH_COMPLETO_SITE."classes/class_conexao.php");
     include_once(PATH_COMPLETO_SITE."classes/class_usuario.php");
     include_once(PATH_COMPLETO_SITE."classes/class_paginas.php");
+    include_once(PATH_COMPLETO_SITE."classes/class_produto.php");
 ?>

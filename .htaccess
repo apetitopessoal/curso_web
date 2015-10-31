@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+rewriteengine on
+RewriteRule ^pagina/(.*?)$ detalhe_pagina.php/?url=$1 [L]
+</IfModule>

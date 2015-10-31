@@ -5,8 +5,24 @@ include_once("../configuracao.php");
 if(!Usuario::ValidarLogin()){
     header("Location: login.php");
     exit;
-}else{
-    $usuarios = Usuario::ListarUsuarios(1);
+}else{  
+    $mensagem_erro = array();
+    if($_GET["id"]){
+        $produtoObj = new Produto($_GET["id"]);           
+    }
+    if($_POST){
+        if(!empty($_POST["nome"])){            
+            if(!empty($_FILES["foto"]["type"]) && (strpos($_FILES["foto"]["type"],"jpeg") === false)){
+                $mensagem_erro[] = "Arquivo Inválido! Utilize somente jpg";
+            }elseif(Produto::Editar($_POST, $_FILES["foto"])){
+                $_SESSION["sucesso_mensagem"] = "Produto alterado com sucesso!";
+                header("Location: ".SITE_URL_ADMIN."/lista_produtos.php");
+                exit;
+            }
+        }else{
+            $mensagem_erro[] = "Verifique os campos e tente novamente!";
+        }
+    }    
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,7 +37,7 @@ if(!Usuario::ValidarLogin()){
                 ?>
                 <section id="main-content">
                     <section class="wrapper">
-                        <?php include_once "tabela_usuario.php"; ?>                        
+                        <?php include_once "form_produtos.php"; ?>
                     </section>
                 </section>
             </section>
@@ -38,19 +54,6 @@ if(!Usuario::ValidarLogin()){
 
             <!--script for this page-->
             <script>
-                function DeleteUsuario(id){
-                    if(confirm("Tem certeza que deseja apagar esse usuário ?")){
-                        $.ajax({
-                            url: '<?php echo SITE_URL_ADMIN?>/delete_usuario.php?id='+id,                            
-                        }).done(function() {
-                            alert("Usuário apagado com sucesso!");
-                            location.reload();
-                        })
-                        
-                        
-                    }
-                }
-
                 //custom select box
                 $(function () {
                     $('select.styled').customSelect();
