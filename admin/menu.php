@@ -29,10 +29,10 @@ MAIN SIDEBAR MENU
                 </a>
             </li>
             <li class="sub-menu">
-                <a <?php echo (strpos($_SERVER["REQUEST_URI"],"lista_carros") ? "class='active'" : "")?>href="javascript:;" >
+                <a <?php echo (strpos($_SERVER["REQUEST_URI"],"lista_produtos") ? "class='active'" : "")?> href="<?php echo SITE_URL_ADMIN?>/lista_produtos.php" >
                     <i class="fa fa-desktop"></i>
                     <span>
-                        Carros
+                        Produtos
                     </span>
                 </a>                
             </li>

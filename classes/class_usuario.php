@@ -130,5 +130,22 @@
         }
         
         
+        public static function Delete($id){
+            
+            if(is_numeric($id)){
+                
+                $sql = "delete from usuarios where id = ".$id;
+                $ConexaoObj = new Conexao();                    
+                $resposta = $ConexaoObj->ExecutarQuery($sql);
+                
+                // Apagar arquivo de imagem
+                unlink(PATH_IMAGEM_USUARIO."/".$id.".jpg");
+                
+            }
+            
+            
+        }
+        
+        
 	}
 ?>

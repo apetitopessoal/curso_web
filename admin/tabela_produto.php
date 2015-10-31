@@ -1,7 +1,7 @@
 <h3>
-    <i class="fa fa-angle-right"></i> Usuários Cadastrados
+    <i class="fa fa-angle-right"></i> Produtos Cadastrados
 </h3>        
-<button class="btn btn-primary" type="button" id="btn_adicionar_paginas">Adicionar Usuário</button>
+<button class="btn btn-primary" type="button" id="btn_adicionar_produtos">Adicionar Produto</button>
 <?php
 if(!empty($_SESSION["sucesso_mensagem"])){
     ?>
@@ -20,7 +20,7 @@ if(!empty($_SESSION["error_msg"])){
     <div class="col-md-12">
         <div class="content-panel">
             <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i> Usuários</h4>
+                <h4><i class="fa fa-angle-right"></i> Produtos</h4>
                 <hr>
                 <thead>
                     <tr>
@@ -30,9 +30,6 @@ if(!empty($_SESSION["error_msg"])){
                         <th class="hidden-phone">
                             Nome
                         </th>
-                        <th class="hidden-phone">
-                            Email
-                        </th>
                         <th>
                             <i class=" fa fa-edit"></i> Opções
                         </th>                        
@@ -40,8 +37,8 @@ if(!empty($_SESSION["error_msg"])){
                 </thead>
                 <tbody>
                     <?php
-                    if($usuarios->num_rows > 0){                        
-                        while($linhas = mysqli_fetch_assoc($usuarios)){
+                    if($produtos->num_rows > 0){                        
+                        while($linhas = mysqli_fetch_assoc($produtos)){
                             ?>
                             <tr>
                                 <td>
@@ -51,15 +48,12 @@ if(!empty($_SESSION["error_msg"])){
                                     <?php echo $linhas["nome"]?>
                                 </td>
                                 <td>
-                                    <?php echo $linhas["email"]?>
-                                </td>
-                                <td>
-                                    <a href="edit_usuario.php?id=<?php echo $linhas["id"]?>">
+                                    <a href="edit_produto.php?id=<?php echo $linhas["id"]?>">
                                         <button class="btn btn-primary btn-xs">
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                     </a>                                    
-                                    <button class="btn btn-danger btn-xs" onclick="javascript:DeleteUsuario(<?php echo $linhas["id"]?>)">
+                                    <button class="btn btn-danger btn-xs" onclick="javascript:DeleteProduto(<?php echo $linhas["id"]?>)">
                                         <i class="fa fa-trash-o "></i>
                                     </button>
                                 </td>
@@ -84,8 +78,8 @@ if(!empty($_SESSION["error_msg"])){
 
 <script>
     $( document ).ready(function() {
-        $("#btn_adicionar_paginas").click(function() {
-            window.location.href = "<?php echo SITE_URL_ADMIN?>/add_usuario.php";
+        $("#btn_adicionar_produtos").click(function() {
+            window.location.href = "<?php echo SITE_URL_ADMIN?>/add_produto.php";
         });
     });
 </script>

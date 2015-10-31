@@ -3,10 +3,11 @@ session_start();
 session_regenerate_id();
 include_once("../configuracao.php");
 if(!Usuario::ValidarLogin()){
+    session_destroy();
     header("Location: login.php");
     exit;
 }else{
-    $usuarios = Usuario::ListarUsuarios(1);
+    $produtos = Produto::ListarProdutos(1);
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,7 +22,7 @@ if(!Usuario::ValidarLogin()){
                 ?>
                 <section id="main-content">
                     <section class="wrapper">
-                        <?php include_once "tabela_usuario.php"; ?>                        
+                        <?php include_once "tabela_produto.php"; ?>                        
                     </section>
                 </section>
             </section>
@@ -38,19 +39,18 @@ if(!Usuario::ValidarLogin()){
 
             <!--script for this page-->
             <script>
-                function DeleteUsuario(id){
-                    if(confirm("Tem certeza que deseja apagar esse usuário ?")){
+                function DeleteProduto(id){
+                    if(confirm("Tem certeza que deseja apagar esse Produto ?")){
                         $.ajax({
-                            url: '<?php echo SITE_URL_ADMIN?>/delete_usuario.php?id='+id,                            
+                            url: '<?php echo SITE_URL_ADMIN?>/delete_produto.php?id='+id,                            
                         }).done(function() {
-                            alert("Usuário apagado com sucesso!");
+                            alert("Produto apagado com sucesso!");
                             location.reload();
                         })
                         
                         
                     }
                 }
-
                 //custom select box
                 $(function () {
                     $('select.styled').customSelect();
