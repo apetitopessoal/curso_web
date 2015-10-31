@@ -1,13 +1,11 @@
 <?php
 session_start();
-if(!$_SESSION["usuario"]){
+session_regenerate_id();
+include_once("../configuracao.php");
+if(!Usuario::ValidarLogin()){
     header("Location: login.php");
     exit;
-}else{
-    include_once("../configuracao.php");
-    include_once("../classes/class_conexao.php");
-    include_once("../classes/class_paginas.php");
-    
+}else{   
     if($_POST){
         if(!empty($_POST["titulo"]) && !empty($_POST["conteudo"])){
             if(Paginas::Adicionar($_POST)){
@@ -15,10 +13,8 @@ if(!$_SESSION["usuario"]){
                 header("Location: ".SITE_URL_ADMIN."/lista_pagina.php");
                 exit;
             }
-            
         }
     }
-    
     ?>
     <!DOCTYPE html>
     <html lang="en">

@@ -1,14 +1,16 @@
 <?php  
     session_start();
+    session_regenerate_id();
     unset($mensagem);
-    if($_POST){
-        if($_POST["email"] == "rodrigoapetito@gmail.com" && $_POST["senha"] == "123456"){
-            $_SESSION["usuario"] = $_POST["email"];
-            header("Location: index.php");
+    if($_POST){        
+        include_once("../configuracao.php");
+        if(Usuario::Login($_POST["email"], $_POST["senha"])){
+            header("Location: lista_pagina.php");
             exit;
         }else{
             $mensagem = "Usuário Inválido!";
-        }  
+        }
+        
     }
     
 ?>

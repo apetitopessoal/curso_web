@@ -24,6 +24,8 @@ class Conexao{
             if ($result = mysqli_query($this->link, $sql)) {                
                 if(strpos($sql, "select") !== false){
                     return $result;
+                }elseif(strpos($sql,"insert") !== false){
+                    return mysqli_insert_id($this->link);
                 }                
                 
             }

@@ -5,8 +5,24 @@ include_once("../configuracao.php");
 if(!Usuario::ValidarLogin()){
     header("Location: login.php");
     exit;
-}else{
-    $usuarios = Usuario::ListarUsuarios(1);
+}else{  
+    $mensagem_erro = array();
+    if($_GET["id"]){
+        $usuarioObj = new Usuario($_GET["id"]);            
+    }
+    if($_POST){
+        if(!empty($_POST["nome"])){            
+            if(!empty($_FILES["foto"]["type"]) && (strpos($_FILES["foto"]["type"],"jpeg") === false)){
+                $mensagem_erro[] = "Arquivo Inválido! Utilize somente jpg";
+            }elseif(Usuario::Editar($_POST, $_FILES["foto"])){
+                $_SESSION["sucesso_mensagem"] = "Usuário cadastrado com sucesso!";
+                header("Location: ".SITE_URL_ADMIN."/lista_usuarios.php");
+                exit;
+            }
+        }else{
+            $mensagem_erro[] = "Verifique os campos e tente novamente!";
+        }
+    }    
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,7 +37,7 @@ if(!Usuario::ValidarLogin()){
                 ?>
                 <section id="main-content">
                     <section class="wrapper">
-                        <?php include_once "tabela_usuario.php"; ?>                        
+                        <?php include_once "form_usuario.php"; ?>
                     </section>
                 </section>
             </section>
