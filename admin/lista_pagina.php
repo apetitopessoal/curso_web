@@ -1,13 +1,12 @@
 <?php
 session_start();
-if(!$_SESSION["usuario"]){
+session_regenerate_id();
+include_once("../configuracao.php");
+if(!Usuario::ValidarLogin()){
+    session_destroy();
     header("Location: login.php");
     exit;
 }else{
-    include_once("../configuracao.php");
-    include_once("../classes/class_conexao.php");
-    include_once("../classes/class_paginas.php");
-    
     $paginas = Paginas::ListarPaginas(1);
     ?>
     <!DOCTYPE html>

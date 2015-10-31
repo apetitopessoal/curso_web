@@ -1,24 +1,21 @@
 <h3>
-    <i class="fa fa-angle-right"></i> Usuários Cadastradas
+    <i class="fa fa-angle-right"></i> Usuários Cadastrados
 </h3>        
 <button class="btn btn-primary" type="button" id="btn_adicionar_paginas">Adicionar Usuário</button>
-
 <?php
 if(!empty($_SESSION["sucesso_mensagem"])){
-    /*
     ?>
     <p><?php echo $_SESSION["sucesso_mensagem"]?></p>
     <?php
-    */
-    ?>
-    <script type="text/javascript">
-        alert('<?php echo $_SESSION["sucesso_mensagem"]?>');
-    </script>
-    <?php
     unset($_SESSION["sucesso_mensagem"]);
 }
+if(!empty($_SESSION["error_msg"])){
+    ?>
+    <p><?php echo $_SESSION["error_msg"]?></p>
+    <?php
+    unset($_SESSION["error_msg"]);
+}
 ?>
-
 <div class="row mt">
     <div class="col-md-12">
         <div class="content-panel">
@@ -43,8 +40,7 @@ if(!empty($_SESSION["sucesso_mensagem"])){
                 </thead>
                 <tbody>
                     <?php
-                    if($usuarios->num_rows > 0){
-                        
+                    if($usuarios->num_rows > 0){                        
                         while($linhas = mysqli_fetch_assoc($usuarios)){
                             ?>
                             <tr>
@@ -58,8 +54,11 @@ if(!empty($_SESSION["sucesso_mensagem"])){
                                     <?php echo $linhas["email"]?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <a href="edit_usuario.php?id=<?php echo $linhas["id"]?>">
+                                        <button class="btn btn-primary btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </a>                                    
                                     <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                 </td>
                             </tr>    

@@ -1,24 +1,25 @@
 <?php
 session_start();
-if(!$_SESSION["usuario"]){
+session_regenerate_id();
+include_once("../configuracao.php");
+if(!Usuario::ValidarLogin()){
     header("Location: login.php");
     exit;
-}else{
-    include_once("../configuracao.php");
-    include_once("../classes/class_conexao.php");
-    include_once("../classes/class_usuario.php");
-    
+}else{  
+    $mensagem_erro = array();
     if($_POST){
-        if(!empty($_POST["nome"]) && !empty($_POST["email"]) && !empty($_POST["senha"])){
-            if(Usuario::Adicionar($_POST)){
-                $_SESSION["sucesso_mensagem"] = "Usuário cadastrada com sucesso!";
+        if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) && ctype_alnum($_POST["senha"]) && !empty($_POST["nome"])){            
+            if(!empty($_FILES) && (strpos($_FILES["foto"]["type"],"jpeg") === false)){
+                $mensagem_erro[] = "Arquivo Inválido! Utilize somente jpg";
+            }elseif(Usuario::Adicionar($_POST, $_FILES["foto"])){
+                $_SESSION["sucesso_mensagem"] = "Usuário cadastrado com sucesso!";
                 header("Location: ".SITE_URL_ADMIN."/lista_usuarios.php");
                 exit;
             }
-            
+        }else{
+            $mensagem_erro[] = "Verifique os campos e tente novamente!";
         }
-    }
-    
+    }    
     ?>
     <!DOCTYPE html>
     <html lang="en">

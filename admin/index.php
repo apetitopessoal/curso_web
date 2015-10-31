@@ -1,10 +1,11 @@
 <?php
 session_start();
-if(!$_SESSION["usuario"]){
+session_regenerate_id();
+include_once("../configuracao.php");
+if(!Usuario::ValidarLogin()){
     header("Location: login.php");
     exit;
-}else{
-    include_once("../configuracao.php");
+}else{    
     ?>
     <!DOCTYPE html>
     <html lang="en">
